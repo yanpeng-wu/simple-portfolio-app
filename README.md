@@ -11,5 +11,5 @@ pip install -r requirements.txt
 
 To start the web app, run:
 ```bash
-python -m streamlit run C:\Users\pengf\PycharmProjects\simple_portfolio_app\src\app.py
+python -m streamlit run [YOUR_LOCAL_PATH_OF_PROJECT]\src\app.py
 ```
