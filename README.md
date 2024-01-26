@@ -10,14 +10,25 @@ results is provided.
 
 ### Code Structure
 ```bash
-simple_portfolio_app             Project name
-    |_src                            source directory
-        |_app.py                      
-        |_app_data.py
-        |_app_utils.py
-    |_test
-        |_test_app_utils.py
-```bash
+simple_portfolio_app             Project Name
+    |_src                            Source Directory
+        |_app.py                         The entry point and the main body of this app. 
+        |_app_data.py                    The collection of helper fuctions for retrieving data.
+        |_app_utils.py                   The utility functions
+    |_test                           Unit Test Directory
+        |_test_app_utils.py              Unit test files for app_utils.py
+```
+
+### Python Packages
+There are specifically 3 python packages are used for this app: 
+1) Yahoo! Finance's API (https://pypi.org/project/yfinance/)
+   Undoubtedly, it can be said that this is one of the most popular open-source libraries efficiently downloading market data from Yahoo Finance.
+2) PyPortfolioOpt (https://pypi.org/project/pyportfolioopt/)
+   It's a user-friendly library that implements various portfolio optimization methods.
+3) Streamlit (https://streamlit.io/)
+   It's a lightweight yet powerful tool designed to streamline the rapid development and seamless sharing of data applications.
+   
+Please follow the steps below to clone, install required packages and start running and enjoying this app.
 
 ### Clone
 Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
