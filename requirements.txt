@@ -1,4 +1,6 @@
-﻿altair==5.2.0
+python_version >= "3.9"
+
+altair==5.2.0
 appdirs==1.4.4
 attrs==23.2.0
 backcall==0.2.0
