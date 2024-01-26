@@ -23,10 +23,13 @@ simple_portfolio_app             Project Name
 There are specifically 3 python packages are used for this app: 
 1) Yahoo! Finance's API (https://pypi.org/project/yfinance/)
    Undoubtedly, it can be said that this is one of the most popular open-source libraries efficiently downloading market data from Yahoo Finance.
+
 2) PyPortfolioOpt (https://pypi.org/project/pyportfolioopt/)
    It's a user-friendly library that implements various portfolio optimization methods.
+
 3) Streamlit (https://streamlit.io/)
    It's a lightweight yet powerful tool designed to streamline the rapid development and seamless sharing of data applications.
+
    
 Please follow the steps below to clone, install required packages and start running and enjoying this app.
 
