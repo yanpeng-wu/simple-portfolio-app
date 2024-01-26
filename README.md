@@ -8,21 +8,21 @@ portfolio. The **optimal** portfolio is generated using the PyPortfolioOpt libra
 objective. A backtest of their performance is conducted, and a statistical summary of the backtest
 results is provided.
 
-## Clone
+### Clone
 Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
 
-## Package Requirements
+### Install Package Requirements
 To install the required python packages, enter your local directory for the above clone and run the following command:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Start the App!
+### Start the App!
 To start the web app, run:
 ```bash
 python -m streamlit run [YOUR_LOCAL_PATH_OF_PROJECT]\src\app.py
 ```
-Once you see the following lines, it should pop your browser and launch the home page of this app.
+Once you see the following lines, it should pop your browser and launch the home page of this app!
 ```bash
 C:\Windows\System32>python -m streamlit run C:\Users\pengf\PycharmProjects\simple_portfolio_app\src\app.py
 
