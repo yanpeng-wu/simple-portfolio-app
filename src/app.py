@@ -94,7 +94,7 @@ with st.container():
 
     returns_eqw_pf = get_eqw_pf_returns(df_return)
     returns_opt_pf, weights_opt_pf = get_opt_pf_returns(df_price, df_return)
-    returns_pf = pd.DataFrame({'Equal Weight': returns_eqw_pf, 'Optimized': returns_opt_pf})
+    returns_pf = pd.DataFrame({'Equal Weight': returns_eqw_pf, 'Optimal': returns_opt_pf})
 
     returns_pf = returns_pf.loc[returns_pf.index >= start_date.strftime('%Y-%m-%d')]
     cum_returns_pf = returns_pf.cumsum()
