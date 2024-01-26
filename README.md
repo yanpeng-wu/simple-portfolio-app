@@ -43,11 +43,11 @@ Please follow the steps below to clone, install required packages and start runn
 Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
 
 ### Install Package Requirements
+**First of all, you need to have python with a version >= 3.9!**
 To install the required python packages, enter your local directory for the above clone and run the following command:
 ```
 pip install -r requirements.txt
 ```
-**Note: you will need to have python with a version >= 3.9!**
 
 ### Start the App!
 To start the web app, run:
