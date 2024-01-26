@@ -1,21 +1,19 @@
-#pip install yfinance
-#pip install streamlit
-#pip install PyPortfolioOpt
-#>pip install plotly_express
-
-#python -m streamlit run C:\Users\pengf\PycharmProjects\simple_portfolio_app\src\app.py
 
 from datetime import datetime
-
 import pandas as pd
 import plotly.express as px
 import streamlit as st
-
 from app_data import get_price_return_data, get_stats, get_eqw_pf_returns, get_opt_pf_returns
 
 st.write("""
 ## Simple Portfolio App
-Compare the performance of the equal **weighted** and **optimized** portfolios
+This app is a demo of how to load the historical stock data via Yahoo Finance API based on a list
+of stock tickers either from user input or from a default ten-stock list. It then will plot the price
+and cumulative return time series, and provide a stats summary of each ticker. 
+
+Next, based on these tickers it will construct two portfolios: **equal weighted** and **optimal**, and
+backtest their performance. The **optimal** portfolio is generated using library PyPortfolioOpt with a
+**max_sharp** objective. A stats summary of the backtest will then be provided. 
 """)
 
 #######################
@@ -63,12 +61,16 @@ with st.container():
 
     # Stock prices
     tkr_price_start_end = df_price.loc[df_price.index >= start_date.strftime('%Y-%m-%d')]
-    st.plotly_chart(px.line(tkr_price_start_end[selected_tickers]), use_container_width=True)
+    fig_px = px.line(tkr_price_start_end[selected_tickers])
+    fig_px.update_yaxes(title_text='Adj Close (USD)')
+    st.plotly_chart(fig_px, use_container_width=True)
 
     # Stock returns
     tkr_return_start_end = df_return.loc[df_return.index >= start_date.strftime('%Y-%m-%d')]
     tkr_cum_return_start_end = tkr_return_start_end.cumsum()
-    st.plotly_chart(px.line(tkr_cum_return_start_end[selected_tickers]), use_container_width=True)
+    fig_rt = px.line(tkr_cum_return_start_end[selected_tickers])
+    fig_rt.update_yaxes(title_text='Cumulative Return (%)')
+    st.plotly_chart(fig_rt, use_container_width=True)
 
     # Stock stats
     tkr_stats = get_stats(tkr_return_start_end[selected_tickers])
@@ -90,16 +92,21 @@ with st.container():
     returns_pf = returns_pf.loc[returns_pf.index >= start_date.strftime('%Y-%m-%d')]
     cum_returns_pf = returns_pf.cumsum()
 
-    st.plotly_chart(px.line(cum_returns_pf), use_container_width=True)
+    fig_rt = px.line(cum_returns_pf)
+    fig_rt.update_xaxes(title_text='Date')
+    fig_rt.update_yaxes(title_text='Cumulative Return (%)')
+    st.plotly_chart(fig_rt, use_container_width=True)
 
     pf_stats = get_stats(returns_pf)
     pf_stats = pf_stats.rename(columns={'index': 'Portfolio'})
     pf_stats.set_index(pf_stats.columns[0], inplace=True)
     st.table(pf_stats.style.format(format_stats))
 
-    #selected_tickers = st.multiselect('Show tickers', tickers, tickers, key='portfolio')
+    selected_tickers = st.multiselect('Show tickers', tickers, tickers, key='portfolio')
 
     # Daily weights
     weights_opt_pf = weights_opt_pf.loc[weights_opt_pf.index >= start_date.strftime('%Y-%m-%d')]
-    st.plotly_chart(px.line(weights_opt_pf[selected_tickers]), use_container_width=True)
+    fig_wt = px.line(weights_opt_pf[selected_tickers])
+    fig_wt.update_yaxes(title_text='Weight')
+    st.plotly_chart(fig_wt, use_container_width=True)
 
