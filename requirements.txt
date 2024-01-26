@@ -35,7 +35,7 @@ markdown-it-py==3.0.0
 MarkupSafe==2.1.4
 mdurl==0.1.2
 multitasking==0.0.11
-numpy==1.24.4
+numpy==1.26.0
 osqp==0.6.3
 parso==0.8.1
 patsy==0.5.6
