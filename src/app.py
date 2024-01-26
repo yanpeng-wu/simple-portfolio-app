@@ -1,19 +1,23 @@
 
 from datetime import datetime
+
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+
 from app_data import get_price_return_data, get_stats, get_eqw_pf_returns, get_opt_pf_returns
 
 st.write("""
 ## Simple Portfolio App
-This app is a demo of how to load the historical stock data via Yahoo Finance API based on a list
-of stock tickers either from user input or from a default ten-stock list. It then will plot the price
-and cumulative return time series, and provide a stats summary of each ticker. 
 
-Next, based on these tickers it will construct two portfolios: **equal weighted** and **optimal**, and
-backtest their performance. The **optimal** portfolio is generated using library PyPortfolioOpt with a
-**max_sharp** objective. A stats summary of the backtest will then be provided. 
+This app serves as a demonstration of how to retrieve historical stock data via the Yahoo Finance API. 
+Users can input a list of stock tickers, or use a default ten-stock list. The app then plots the price
+and cumulative return time series for each ticker, providing a statistical summary for each.
+
+Furthermore, the app constructs two portfolios: an **equal-weighted** portfolio and an **optimal**
+portfolio. The **optimal** portfolio is generated using the PyPortfolioOpt library with a max_sharpe
+objective. A backtest of their performance is conducted, and a statistical summary of the backtest
+results is provided.
 """)
 
 #######################
@@ -28,7 +32,7 @@ with st.container():
         tickers = [t.strip() for t in tickers]
     else:
         tickers = ['NVDA', 'AAPL', 'XOM', 'PFE', 'COST', 'MO', 'O', 'BAC', 'TSLA', 'MCD']
-        st.write("Since no input, a default list is applied")
+        st.write("Since no input, a default ten-stock list is applied")
 
     sdate_col, edate_col = st.columns(2)
     with sdate_col:
@@ -57,15 +61,17 @@ with st.container():
     st.write('---')
     st.write('#### Ticker')
 
-    selected_tickers = st.multiselect('Show tickers', tickers, tickers, key='ticker')
+    selected_tickers = st.multiselect('Selected tickers', tickers, tickers, key='ticker')
 
     # Stock prices
+    st.write('Historical Adj Close (USD)')
     tkr_price_start_end = df_price.loc[df_price.index >= start_date.strftime('%Y-%m-%d')]
     fig_px = px.line(tkr_price_start_end[selected_tickers])
     fig_px.update_yaxes(title_text='Adj Close (USD)')
     st.plotly_chart(fig_px, use_container_width=True)
 
     # Stock returns
+    st.write('Cumulative Return')
     tkr_return_start_end = df_return.loc[df_return.index >= start_date.strftime('%Y-%m-%d')]
     tkr_cum_return_start_end = tkr_return_start_end.cumsum()
     fig_rt = px.line(tkr_cum_return_start_end[selected_tickers])
@@ -73,6 +79,7 @@ with st.container():
     st.plotly_chart(fig_rt, use_container_width=True)
 
     # Stock stats
+    st.write('Summary')
     tkr_stats = get_stats(tkr_return_start_end[selected_tickers])
     tkr_stats = tkr_stats.rename(columns={'index': 'Ticker'})
     tkr_stats.set_index(tkr_stats.columns[0], inplace=True)
@@ -92,21 +99,25 @@ with st.container():
     returns_pf = returns_pf.loc[returns_pf.index >= start_date.strftime('%Y-%m-%d')]
     cum_returns_pf = returns_pf.cumsum()
 
+    # Portfolio cumulative returns
+    st.write('Cumulative Return')
     fig_rt = px.line(cum_returns_pf)
     fig_rt.update_xaxes(title_text='Date')
     fig_rt.update_yaxes(title_text='Cumulative Return (%)')
     st.plotly_chart(fig_rt, use_container_width=True)
 
+    # Portfolio stats
+    st.write('Summary')
     pf_stats = get_stats(returns_pf)
     pf_stats = pf_stats.rename(columns={'index': 'Portfolio'})
     pf_stats.set_index(pf_stats.columns[0], inplace=True)
     st.table(pf_stats.style.format(format_stats))
 
-    selected_tickers = st.multiselect('Show tickers', tickers, tickers, key='portfolio')
+    selected_tickers = st.multiselect('Selected tickers', tickers, tickers, key='portfolio')
 
     # Daily weights
+    st.write('Daily weights')
     weights_opt_pf = weights_opt_pf.loc[weights_opt_pf.index >= start_date.strftime('%Y-%m-%d')]
     fig_wt = px.line(weights_opt_pf[selected_tickers])
     fig_wt.update_yaxes(title_text='Weight')
     st.plotly_chart(fig_wt, use_container_width=True)
-
