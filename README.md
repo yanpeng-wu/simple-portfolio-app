@@ -9,6 +9,7 @@ objective. A backtest of their performance is conducted, and a statistical summa
 results is provided.
 
 ### Code Structure
+```bash
 simple_portfolio_app             Project name
     |_src                            source directory
         |_app.py                      
@@ -16,6 +17,7 @@ simple_portfolio_app             Project name
         |_app_utils.py
     |_test
         |_test_app_utils.py
+```bash
 
 ### Clone
 Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
