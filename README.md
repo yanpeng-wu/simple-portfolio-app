@@ -8,6 +8,15 @@ portfolio. The **optimal** portfolio is generated using the PyPortfolioOpt libra
 objective. A backtest of their performance is conducted, and a statistical summary of the backtest
 results is provided.
 
+### Code Structure
+simple_portfolio_app             Project name
+    |_src                            source directory
+        |_app.py                      
+        |_app_data.py
+        |_app_utils.py
+    |_test
+        |_test_app_utils.py
+
 ### Clone
 Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
 
