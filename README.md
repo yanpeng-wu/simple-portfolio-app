@@ -8,7 +8,7 @@ portfolio. The **optimal** portfolio is generated using the PyPortfolioOpt libra
 objective. A backtest of their performance is conducted, and a statistical summary of the backtest
 results is provided.
 
------
+---
 
 ### Code Structure
 ```
