@@ -47,6 +47,7 @@ To install the required python packages, enter your local directory for the abov
 ```
 pip install -r requirements.txt
 ```
+**Note: you will need to have python with a version >= 3.9!**
 
 ### Start the App!
 To start the web app, run:
