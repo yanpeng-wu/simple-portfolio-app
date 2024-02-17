@@ -12,7 +12,7 @@ results is provided.
 
 ### Code Structure
 ```
-simple_portfolio_app             Project Name
+simple-portfolio-app             Project Name
     |_src                            Source Directory
         |_app.py                         The entry point and the main body of this app. 
         |_app_data.py                    The collection of helper fuctions for retrieving data.
@@ -40,7 +40,7 @@ There are specifically 3 python packages are used for this app:
 Please follow the steps below to clone, install required packages and start running and enjoying this app.
 
 ### Clone
-Clone this repo to your local machine using https://github.com/yanpeng-wu/simple_portfolio_app/
+Clone this repo to your local machine using https://github.com/yanpeng-wu/simple-portfolio-app/
 
 ### Install Package Requirements
 **First of all, you need to have python with a version >= 3.9!**
@@ -56,7 +56,7 @@ python -m streamlit run [YOUR_LOCAL_PATH_OF_PROJECT]\src\app.py
 ```
 Once you see the following lines, it should pop your browser and launch the home page of this app!
 ```
-C:\Windows\System32>python -m streamlit run C:\Users\pengf\PycharmProjects\simple_portfolio_app\src\app.py
+C:\Windows\System32>python -m streamlit run C:\Users\pengf\PycharmProjects\simple-portfolio-app\src\app.py
 
   You can now view your Streamlit app in your browser.
 
